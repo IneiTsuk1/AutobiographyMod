@@ -97,14 +97,8 @@ public class Autobiography implements ModInitializer {
         // Set the team's display name to an empty string, ensuring it doesn't show the player’s name in the tablist
         team.setDisplayName(Text.of(""));
 
-        // Remove player from any existing team before adding to the new one
-        Team existingTeam = scoreboard.getPlayerTeam(playerName);
-        if (existingTeam != null) {
-            existingTeam.removePlayer(playerName);  // Remove from any previous team
-        }
-
-        // Add player to the new team
-        team.addPlayer(playerName);  // Add player to the team manually
+        // Add player to the team (This method exists in the newer versions of the API)
+        team.getPlayerList().add(playerName);
 
         // Now update nametag and tablist for the player
         updateNametagForEveryone(player);  // Update the nametag for all players
